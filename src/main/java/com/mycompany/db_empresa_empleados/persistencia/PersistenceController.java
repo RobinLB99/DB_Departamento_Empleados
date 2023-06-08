@@ -1,5 +1,6 @@
 package com.mycompany.db_empresa_empleados.persistencia;
 
+import com.mycompany.db_empresa_empleados.logica.Departamento;
 import com.mycompany.db_empresa_empleados.logica.Direccion;
 import com.mycompany.db_empresa_empleados.logica.Empleado;
 import com.mycompany.db_empresa_empleados.persistencia.exceptions.NonexistentEntityException;
@@ -12,6 +13,7 @@ public class PersistenceController {
 
     EmpleadoJpaController empControl = new EmpleadoJpaController();
     DireccionJpaController dirControl = new DireccionJpaController();
+    DepartamentoJpaController depControl = new DepartamentoJpaController();
 
     // Empleados
     public void createEmploy(Empleado empleado) {
@@ -73,5 +75,34 @@ public class PersistenceController {
         return dirControl.findDireccionEntities();
     }
     
+    // Departamento
+
+    public void createDepartment(Departamento depart) {
+        depControl.create(depart);
+    }
+
+    public void deleteDepartment(int id) {
+        try {
+            depControl.destroy(id);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(PersistenceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void editDepartment(Departamento depart) {
+        try {
+            depControl.edit(depart);
+        } catch (Exception ex) {
+            Logger.getLogger(PersistenceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public Departamento findDepartment(int id) {
+        return depControl.findDepartamento(id);
+    }
+
+    public List<Departamento> departmentList() {
+        return depControl.findDepartamentoEntities();
+    }
     
 }
