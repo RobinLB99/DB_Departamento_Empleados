@@ -54,4 +54,27 @@ public class LogicController {
         return direcciones;
     }
     
+    // Departamento
+    public void crearDepartamento(Departamento depart) {
+        perControl.createDepartment(depart);
+    }
+    
+    public void eliminarDepartamento(int id) {
+        perControl.deleteDepartment(id);
+    }
+    
+    public void editarDepartamento(Departamento depart) {
+        perControl.editDepartment(depart);
+    }
+    
+    public Departamento buscarDepartamento(int id) {
+        return perControl.findDepartment(id);
+    }
+    
+    public ArrayList listaDepartamentos() {
+        List<Departamento> lista = perControl.departmentList();
+        ArrayList departamentos = new ArrayList(lista);
+        return departamentos;
+    }
+    
 }
