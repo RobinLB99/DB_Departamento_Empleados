@@ -23,16 +23,19 @@ public class Empleado implements Serializable {
     private Date f_Nacimiento;
     @OneToOne
     private Direccion direccion;
+    @ManyToOne
+    private Departamento departamento;
 
     public Empleado() {
     }
 
-    public Empleado(int id, String nombres, String apellidos, Date f_Nacimiento, Direccion direccion) {
+    public Empleado(int id, String nombres, String apellidos, Date f_Nacimiento, Direccion direccion, Departamento departamento) {
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.f_Nacimiento = f_Nacimiento;
         this.direccion = direccion;
+        this.departamento = departamento;
     }
 
     public int getId() {
@@ -73,6 +76,14 @@ public class Empleado implements Serializable {
 
     public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
+    }
+
+    public Departamento getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
     }
 
     
