@@ -18,6 +18,8 @@ public class IngresarEmpleados {
 
     LogicController control = new LogicController();
     IngresarDireccion inDir = new IngresarDireccion();
+
+    int opc;
     
     public void processIn() {
         
@@ -28,15 +30,17 @@ public class IngresarEmpleados {
         int departamento = 0;
         
         boolean repeat;
-        
+
+        // Ingresar Empleados
+        System.out.println("\n----- INGRESE LOS EMPLEADOS -----");
+
         do {
             repeat = false;
             boolean repeatI;
-            
-            // Ingresar Empleados
-            System.out.println("\n----- INGRESE LOS EMPLEADOS -----");
-            do {  
-                //Nombres
+            boolean repetirP;
+
+            //Nombres
+            do {
                 repeatI = false;
                 System.out.println("Ingrese los nombres del empleado.");
                 try {
@@ -52,9 +56,9 @@ public class IngresarEmpleados {
                     Logger.getLogger(IngresarEmpleados.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } while (repeatI);
-            
-            do {  
-                //Apellidos
+
+            //Apellidos
+            do {
                 repeatI = false;
                 System.out.println("Ingrese los apellidos del empleado.");
                 try {
@@ -71,9 +75,9 @@ public class IngresarEmpleados {
                 }
                 
             } while (repeatI);
-            
-            do {  
-                //Fecha de nacimiento
+
+            //Fecha de nacimiento
+            do {
                 repeatI = false;
                 System.out.println("Ingrese una fecha de nacimiento.");
                 System.out.println("* Formato Año/Dia/Mes - 0000/00/00 *");
@@ -92,16 +96,16 @@ public class IngresarEmpleados {
                 }
                 
             } while (repeatI);
-            
-            do {     
-                // Direccion
+
+            // Direccion
+            do {
                 repeatI = false;
                 direccion = inDir.inDireccion();
                 
             } while (repeatI);
-            
+
+            //Departamento
             do {
-                //Departamento
                 repeatI = false;
                 System.out.println("Asigne un departamento por medio de su ID");
                 try {
@@ -114,7 +118,7 @@ public class IngresarEmpleados {
                 
             } while (repeatI);
             
-            
+            // Creacion de empleado
             try {
                 Departamento depart = control.buscarDepartamento(departamento);
                 
@@ -128,12 +132,31 @@ public class IngresarEmpleados {
                 System.err.println(e);
                 repeat = true;
             }
-                    
-            
-            
+
+            // Pregunta de confirmacion para ingresar otro empleado a la lista.
+            do {
+                repetirP = false;
+                System.out.println("\n¿Desea ingresar otro empleado?\nSi(1)     No(2)");
+                try {
+                    opc = Integer.parseInt(buffer.readLine());
+
+                    if (opc == 1) {
+                        repeat = true;
+                    } else if (opc == 2) {
+                        repeat = false;
+                    } else {
+                        repetirP = true;
+                        System.out.println("No ingresaste una opcion valida!. Intentalo otra vez.");
+                    }
+
+                } catch (Exception e) {
+                    repetirP = true;
+                    System.out.println("Ups! Solo se permiten caracteres numericos.\nIntentalo otra vez!");
+                }
+
+            } while (repetirP);
+
         } while (repeat);
-        
-        
         
     }
     
