@@ -69,5 +69,15 @@ public class Direccion implements Serializable {
     public void setCodigoPostal(String codigoPostal) {
         this.codigoPostal = codigoPostal;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Direccion{" +
+                "id=" + id +
+                ", calle='" + calle + '\'' +
+                ", ciudad='" + ciudad + '\'' +
+                ", estado='" + estado + '\'' +
+                ", codigoPostal='" + codigoPostal + '\'' +
+                '}';
+    }
 }
