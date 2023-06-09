@@ -6,7 +6,7 @@
     <class>com.mycompany.db_empresa_empleados.logica.Direccion</class>
     <class>com.mycompany.db_empresa_empleados.logica.Empleado</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.137.11:3306/db_departamento_empleados?serverTimeszone=UTC"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.137.11:3306/db_departamento_empleados?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="RobinLB99"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="0211995022"/>
