@@ -16,6 +16,7 @@ public class Comandline {
     Pausa pause = new Pausa();
     LogicController control = new LogicController();
     IngresarEmpleados inEmpleado = new IngresarEmpleados();
+    IngresarDepartamentos inDepart = new IngresarDepartamentos();
 
     boolean repetir;
     
@@ -161,6 +162,12 @@ public class Comandline {
                             }
                             pause.pausa();
                             System.out.flush();
+                            break;
+
+                        // Ingresar departamento
+                        case 6:
+                            repetir = true;
+                            inDepart.InputDepartments();
                             break;
 
                         // Cerrar el programa
