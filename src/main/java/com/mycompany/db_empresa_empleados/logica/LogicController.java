@@ -1,6 +1,8 @@
 package com.mycompany.db_empresa_empleados.logica;
 
 import com.mycompany.db_empresa_empleados.persistencia.PersistenceController;
+import com.mycompany.db_empresa_empleados.persistencia.exceptions.NonexistentEntityException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +15,7 @@ public class LogicController {
         perControl.createEmploy(empleado);
     }
     
-    public void eliminarEmpleado(int id) {
+    public void eliminarEmpleado(int id) /**/throws NonexistentEntityException {
         perControl.deleteEmploy(id);
     }
     
