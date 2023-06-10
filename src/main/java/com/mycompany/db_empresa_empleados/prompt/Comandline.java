@@ -1,5 +1,6 @@
 package com.mycompany.db_empresa_empleados.prompt;
 
+import com.mycompany.db_empresa_empleados.logica.Departamento;
 import com.mycompany.db_empresa_empleados.logica.Empleado;
 import com.mycompany.db_empresa_empleados.logica.LogicController;
 
@@ -42,6 +43,7 @@ public class Comandline {
                     int opc = Integer.parseInt(buffer.readLine());
 
                     switch (opc) {
+                        // Ver lista de empleados
                         case 1:
                             System.out.println("------------------------- Lista de Empleados -------------------------");
                             System.out.println("----------------------------------------------------------------------\n");
@@ -63,6 +65,7 @@ public class Comandline {
                             repetir = true;
                             break;
 
+                        // Buscar empleado
                         case 2:
                             boolean repetirId;
 
@@ -104,11 +107,13 @@ public class Comandline {
                             } while (repetirId);
                             break;
 
+                        // Crear empleado
                         case 3:
                             inEmpleado.processIn();
                             repetir = true;
                             break;
 
+                        // Eliminar empleado
                         case 4:
                             boolean repetirDelete;
                             do {
@@ -134,6 +139,18 @@ public class Comandline {
                                     System.out.println("Error! No se ingreso un caracter numerico. Intentalo otra vez!");
                                 }
                             } while (repetirDelete);
+                            break;
+
+                        case 5:
+                            System.out.println("\n--------------- Lista de Departamentos ---------------\n");
+                            ArrayList<Departamento> departamentos = control.listaDepartamentos();
+                            for(Departamento depar : departamentos) {
+                                System.out.println("ID: " + depar.getId() +
+                                                " | Nombre: " + depar.getNombre()+
+                                                " | Descripcion: " + depar.getDescripcion());
+                                System.out.println("----------------------------------------------------");
+                            }
+                            repetir = true;
                             break;
 
                         default:
