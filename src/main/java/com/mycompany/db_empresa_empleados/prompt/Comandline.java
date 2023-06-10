@@ -108,6 +108,7 @@ public class Comandline {
                             inEmpleado.processIn();
                             repetir = true;
                             break;
+
                         default:
                             repetir = true;
                             System.out.println("No ingreso una opcion valida!\nIntenta otra vez!");
