@@ -5,3 +5,6 @@
     Usuario: root
     Contraseña: 123456
 * El nombre de la base de datos debe ser: db_departamento_empleados
+
+Descargar paquete ejecutable:
+https://github.com/RobinLB99/DB_Departamento_Empleados/blob/master/EmpeladoDepartamento.zip
