@@ -13,6 +13,7 @@ public class Comandline {
 
     InputStreamReader in = new InputStreamReader(System.in);
     BufferedReader buffer = new BufferedReader(in);
+    Pantalla pantalla = new Pantalla();
     Pausa pause = new Pausa();
     LogicController control = new LogicController();
     IngresarEmpleados inEmpleado = new IngresarEmpleados();
@@ -35,6 +36,7 @@ public class Comandline {
             do {
                 repetir = false;
 
+//                pantalla.limpiar();
                 System.out.println("\n ---------- Menu ---------- ");
                 System.out.println("\n¿Que desea hacer?");
                 System.out.println("(1) Ver lista de empleados      (2) Buscar empleado      (3) Crear empleado     (4) Eliminar empleado     (5) Ver lista de departamentos      (6) Crear departamento     (7) Eliminar departamento      (8) Salir");
@@ -168,6 +170,58 @@ public class Comandline {
                         case 6:
                             repetir = true;
                             inDepart.InputDepartments();
+                            break;
+
+                        // Eliminar departamento
+                        case 7:
+                            repetir = true;
+                            boolean repetirDeleteDepart;
+
+                            do {
+                                repetirDeleteDepart = false;
+                                System.out.println("Ingresar ID del departamento a eliminar:");
+                                try {
+                                    int idDepart = Integer.parseInt(buffer.readLine());
+
+                                    boolean oks = false;
+                                    try {
+                                        Departamento dep = control.buscarDepartamento(idDepart);
+
+                                        if (dep == null) {
+                                            System.out.println("Error! El departamento que desea eliminar no existe. Ingrese un ID de departamento valido. ");
+                                            pause.pausa();
+                                            System.out.flush();
+
+                                        } else {
+                                            try {
+                                                control.eliminarDepartamento(idDepart);
+                                                System.out.println("Departamento eliminado con exito!");
+                                                pause.pausa();
+                                                System.out.flush();
+
+                                            } catch (Exception e) {
+                                                System.out.println("\nUps! No se puede eliminar un departamento mientra este asociacion con un empleado.\n Elimine los empleados asociados a este departamento y luego procesa a eliminarlo.");
+                                                pause.pausa();
+                                                System.out.flush();
+                                            }
+
+                                        }
+
+                                    } catch (Exception e) {
+                                        repetirDeleteDepart = true;
+                                        System.out.println("Ups! El dartamento que busca no se encuentra registrado. Ingrese el ID correspondiente al departamento deseado.");
+                                        pause.pausa();
+                                        System.out.flush();
+                                    }
+
+                                } catch (Exception e) {
+                                    repetirDeleteDepart = true;
+                                    System.out.println("Ups! No ingresaste un caracter numerico. Intenta otra vez!");
+                                    pause.pausa();
+                                    System.out.flush();
+                                }
+
+                            } while (repetirDeleteDepart);
                             break;
 
                         // Cerrar el programa
