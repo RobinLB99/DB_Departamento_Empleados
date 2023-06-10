@@ -15,6 +15,7 @@ public class IngresarEmpleados {
     
     InputStreamReader in = new InputStreamReader(System.in);
     BufferedReader buffer = new BufferedReader(in);
+    Pantalla pantalla = new Pantalla();
 
     LogicController control = new LogicController();
     IngresarDireccion inDir = new IngresarDireccion();
@@ -129,7 +130,7 @@ public class IngresarEmpleados {
                 
             } catch (Exception e) {
                 System.out.println("Ups! Ocurrio un error. Intentemoslo de nuevo!");
-                System.err.println(e);
+                pantalla.pausa();
                 repeat = true;
             }
 
@@ -147,11 +148,13 @@ public class IngresarEmpleados {
                     } else {
                         repetirP = true;
                         System.out.println("No ingresaste una opcion valida!. Intentalo otra vez.");
+                        pantalla.pausa();
                     }
 
                 } catch (Exception e) {
                     repetirP = true;
                     System.out.println("Ups! Solo se permiten caracteres numericos.\nIntentalo otra vez!");
+                    pantalla.pausa();
                 }
 
             } while (repetirP);

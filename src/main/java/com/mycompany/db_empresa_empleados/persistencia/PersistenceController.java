@@ -20,12 +20,13 @@ public class PersistenceController {
         empControl.create(empleado);
     }
 
-    public void deleteEmploy(int id) {
-        try {
+    public void deleteEmploy(int id) /**/throws NonexistentEntityException {
+        empControl.destroy(id);
+        /*try {
             empControl.destroy(id);
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(PersistenceController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }
 
     public void editEmploy(Empleado empleado) {

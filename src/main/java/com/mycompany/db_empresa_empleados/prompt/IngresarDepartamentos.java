@@ -14,6 +14,7 @@ public class IngresarDepartamentos {
     BufferedReader buffer = new BufferedReader(in);
     
     LogicController control = new LogicController();
+    Pantalla pantalla = new Pantalla();
     
     public void InputDepartments() {
         
@@ -34,14 +35,18 @@ public class IngresarDepartamentos {
                 repeatI = false;
                 System.out.println("Ingrese el nombre del departamento: ");
                 System.out.flush();
+
                 try {
                     nombreDep = buffer.readLine();
                     if (nombreDep.isBlank()) {
                         repeatI = true;
                     }
-                } catch (IOException ex) {
-                    System.out.println("Error al leer el input!");
+
+                } catch (Exception ex) {
                     repeatI = true;
+                    System.out.println("Error al leer el input!");
+                    pantalla.pausa();
+                    System.out.flush();
                 }
             } while (repeatI);
 
@@ -67,25 +72,29 @@ public class IngresarDepartamentos {
                 repeatP = false;
 
                 System.out.println("\nDesea ingresar otro departamento?\n* Si(Ingrese 1)      No(Ingrese 2)");
-                String opc;
                 System.out.flush();
                 try {
-                    opc = buffer.readLine();
+                    int opc = Integer.parseInt(buffer.readLine());
                     
-                    if (opc.equals("1")) {
+                    if (opc == 1) {
                         repeat = true;
-                    } else if (opc.equals("2")) {
+                    } else if (opc == 2) {
                         //
                     } else {
-                        System.out.println("Opcion Invalida! Ingrese una opcion valida!");
                         repeatP = true;
+                        System.out.println("Opcion Invalida! Ingrese una opcion valida!");
+                        pantalla.pausa();
+                        System.out.flush();
                     }
-                } catch (IOException ex) {
-                    Logger.getLogger(IngresarDepartamentos.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
                     repeatP = true;
+                    System.out.println("Error!, No se ingreso un valor numerico. Intentalo otra vez!");
+                    pantalla.pausa();
+                    System.out.flush();
                 }
 
             } while (repeatP);
+
         } while (repeat);
         
     }
