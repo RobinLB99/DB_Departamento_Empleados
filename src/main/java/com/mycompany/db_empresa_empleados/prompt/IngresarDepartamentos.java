@@ -14,7 +14,7 @@ public class IngresarDepartamentos {
     BufferedReader buffer = new BufferedReader(in);
     
     LogicController control = new LogicController();
-    Pausa pause = new Pausa();
+    Pantalla pantalla = new Pantalla();
     
     public void InputDepartments() {
         
@@ -45,7 +45,7 @@ public class IngresarDepartamentos {
                 } catch (Exception ex) {
                     repeatI = true;
                     System.out.println("Error al leer el input!");
-                    pause.pausa();
+                    pantalla.pausa();
                     System.out.flush();
                 }
             } while (repeatI);
@@ -83,13 +83,13 @@ public class IngresarDepartamentos {
                     } else {
                         repeatP = true;
                         System.out.println("Opcion Invalida! Ingrese una opcion valida!");
-                        pause.pausa();
+                        pantalla.pausa();
                         System.out.flush();
                     }
                 } catch (Exception ex) {
                     repeatP = true;
                     System.out.println("Error!, No se ingreso un valor numerico. Intentalo otra vez!");
-                    pause.pausa();
+                    pantalla.pausa();
                     System.out.flush();
                 }
 
