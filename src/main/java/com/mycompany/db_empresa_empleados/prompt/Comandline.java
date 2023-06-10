@@ -234,7 +234,7 @@ public class Comandline {
                         case 8:
                             System.exit(0);
                             break;
-
+                        
                         default:
                             repetir = true;
                             System.out.println("No ingreso una opcion valida!\nIntenta otra vez!");
