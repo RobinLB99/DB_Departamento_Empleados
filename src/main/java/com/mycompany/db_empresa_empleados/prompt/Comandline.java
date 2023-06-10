@@ -13,6 +13,7 @@ public class Comandline {
 
     InputStreamReader in = new InputStreamReader(System.in);
     BufferedReader buffer = new BufferedReader(in);
+    Pausa pause = new Pausa();
     LogicController control = new LogicController();
     IngresarEmpleados inEmpleado = new IngresarEmpleados();
 
@@ -45,6 +46,7 @@ public class Comandline {
                     switch (opc) {
                         // Ver lista de empleados
                         case 1:
+                            repetir = true;
                             System.out.println("------------------------- Lista de Empleados -------------------------");
                             System.out.println("----------------------------------------------------------------------\n");
                             ArrayList<Empleado> lista = control.listaEmpleados();
@@ -58,11 +60,10 @@ public class Comandline {
                                                 "/" + employ.getDireccion().getEstado() +
                                                 ", " + employ.getDireccion().getCodigoPostal() +
                                         " | Departemento: " + employ.getDepartamento().getNombre());
-                                System.out.println("---------------------------------------------\n");
-                                System.out.flush();
-
+                                System.out.println("---------------------------------------------");
                             }
-                            repetir = true;
+                            pause.pausa();
+                            System.out.flush();
                             break;
 
                         // Buscar empleado
@@ -89,18 +90,21 @@ public class Comandline {
                                                         ", " + empleado.getDireccion().getCodigoPostal() +
                                                 " | Departemento: " + empleado.getDepartamento().getNombre());
                                         System.out.println("-------------------------------------------");
+                                        pause.pausa();
                                         System.out.flush();
                                         repetir = true;
 
                                     } catch (Exception e) {
                                         repetirId = true;
                                         System.out.println("El empleado no encontrado. Ingrese una ID valida!.");
+                                        pause.pausa();
                                         System.out.flush();
                                     }
 
                                 } catch (Exception e) {
                                     repetirId = true;
                                     System.out.println("El carracter a ingresar debe ser numerico!");
+                                    pause.pausa();
                                     System.out.flush();
                                 }
 
@@ -129,19 +133,24 @@ public class Comandline {
                                         control.eliminarEmpleado(idEmp);
                                         control.eliminarDireccion(idEmploy);
                                         System.out.println("Empleado eliminado de la base de datos exitosamente!\n");
+                                        pause.pausa();
 
                                     } catch (Exception e) {
                                         repetirDelete = true;
                                         System.out.println("El ID que ingreso no se encuentra en el registro! Ingrese un ID de empleado valido.");
+                                        pause.pausa();
                                     }
                                 } catch (Exception e) {
                                     repetirDelete = true;
                                     System.out.println("Error! No se ingreso un caracter numerico. Intentalo otra vez!");
+                                    pause.pausa();
                                 }
                             } while (repetirDelete);
                             break;
 
+                        // Lista de departamentos
                         case 5:
+                            repetir = true;
                             System.out.println("\n--------------- Lista de Departamentos ---------------\n");
                             ArrayList<Departamento> departamentos = control.listaDepartamentos();
                             for(Departamento depar : departamentos) {
@@ -150,9 +159,11 @@ public class Comandline {
                                                 " | Descripcion: " + depar.getDescripcion());
                                 System.out.println("----------------------------------------------------");
                             }
-                            repetir = true;
+                            pause.pausa();
+                            System.out.flush();
                             break;
 
+                        // Cerrar el programa
                         case 8:
                             System.exit(0);
                             break;
@@ -160,6 +171,7 @@ public class Comandline {
                         default:
                             repetir = true;
                             System.out.println("No ingreso una opcion valida!\nIntenta otra vez!");
+                            pause.pausa();
                             System.out.flush();
 
                     }
@@ -167,6 +179,7 @@ public class Comandline {
                 } catch (Exception e) {
                     repetir = true;
                     System.out.println("Debe ingresar un caracter numerico!");
+                    pause.pausa();
                     System.out.flush();
                 }
 
