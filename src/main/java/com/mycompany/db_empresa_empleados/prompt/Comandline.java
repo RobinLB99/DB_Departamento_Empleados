@@ -108,6 +108,34 @@ public class Comandline {
                             inEmpleado.processIn();
                             repetir = true;
                             break;
+
+                        case 4:
+                            boolean repetirDelete;
+                            do {
+                                repetirDelete = false;
+
+                                System.out.println("\nIngrese el ID del empleado que desea eliminar:");
+                                try {
+                                    int idEmp = Integer.parseInt(buffer.readLine());
+                                    try {
+                                        repetir = true;
+                                        Empleado employ = control.buscarEmpleado(idEmp);
+                                        int idEmploy = employ.getDireccion().getId();
+                                        control.eliminarEmpleado(idEmp);
+                                        control.eliminarDireccion(idEmploy);
+                                        System.out.println("Empleado eliminado de la base de datos exitosamente!\n");
+
+                                    } catch (Exception e) {
+                                        repetirDelete = true;
+                                        System.out.println("El ID que ingreso no se encuentra en el registro! Ingrese un ID de empleado valido.");
+                                    }
+                                } catch (Exception e) {
+                                    repetirDelete = true;
+                                    System.out.println("Error! No se ingreso un caracter numerico. Intentalo otra vez!");
+                                }
+                            } while (repetirDelete);
+                            break;
+
                         default:
                             repetir = true;
                             System.out.println("No ingreso una opcion valida!\nIntenta otra vez!");
